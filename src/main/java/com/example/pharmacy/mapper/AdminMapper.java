@@ -4,11 +4,10 @@ package com.example.pharmacy.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.example.pharmacy.adminrequest.AdminRequest;
+
 import com.example.pharmacy.entity.Admin;
+import com.example.pharmacy.requestdtos.AdminRequest;
 import com.example.pharmacy.responsedtos.AdminResponse;
-
-
 
 @Component
 public class AdminMapper
