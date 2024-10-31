@@ -1,30 +1,10 @@
-package com.example.pharmacy.entity;
+package com.example.pharmacy.responsedtos;
 
-import com.example.pharmacy.config.GenerateCustomId;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-
-@Entity
-public class Pharmacy {
-	@Id
-	@GenerateCustomId
-	
+public class PharmacyResponse {
 	private String pharmacyId;
 	private String name;
 	private String gstNo;
 	private String licenseNo;
-	@OneToOne(mappedBy ="pharmacy")
-	private Admin admin;
-	
-	
-	public Admin getAdmin() {
-		return admin;
-	}
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
 	public String getPharmacyId() {
 		return pharmacyId;
 	}
@@ -50,5 +30,4 @@ public class Pharmacy {
 		this.licenseNo = licenseNo;
 	}
 	
-
 }
