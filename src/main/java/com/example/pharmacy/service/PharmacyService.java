@@ -6,10 +6,13 @@ import org.springframework.stereotype.Service;
 import com.example.pharmacy.entity.Admin;
 import com.example.pharmacy.entity.Pharmacy;
 import com.example.pharmacy.exception.AdminNotFoundByIdException;
+import com.example.pharmacy.exception.NoPharmacyFoundException;
 import com.example.pharmacy.mapper.PharmacyMapper;
 import com.example.pharmacy.repository.AdminRepository;
 import com.example.pharmacy.repository.PharmacyRepository;
+import com.example.pharmacy.requestdtos.AdminRequest;
 import com.example.pharmacy.requestdtos.PharmacyRequest;
+import com.example.pharmacy.responsedtos.AdminResponse;
 import com.example.pharmacy.responsedtos.PharmacyResponse;
 import com.example.pharmacy.util.ResponseStructure;
 @Service
@@ -44,5 +47,22 @@ public PharmacyResponse addPharmacy(PharmacyRequest pharmacyRequest,String admin
 			  
 			  .orElseThrow(() -> new AdminNotFoundByIdException("Admin with ID \" + pharmacyRequest.getAdminId() + \" not found."));
 }
+
+
+
+public PharmacyResponse findPharmacyByAdminId(String adminId){
+	Admin admin=adminRepository.findById(adminId)
+			.orElseThrow(() -> new AdminNotFoundByIdException("Failed to Find Admin"));
+
+	Pharmacy pharmacy=adminRepository.findPharmacyByAdminId(adminId);
+	if(pharmacy==null)
+	{
+		throw new NoPharmacyFoundException("No Pharmacy associated with admin ID:"+adminId);
+	}
+	return pharmacyMapper.mapToPharmacyResponse(pharmacy);
+
+}
+	
+	
 	
 }

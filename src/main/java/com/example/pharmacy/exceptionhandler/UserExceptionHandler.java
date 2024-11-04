@@ -3,18 +3,20 @@ package com.example.pharmacy.exceptionhandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.pharmacy.exception.AdminNotFoundByIdException;
 import com.example.pharmacy.exception.NoAdminFoundException;
+
 import com.example.pharmacy.util.AppResponseBuilder;
 import com.example.pharmacy.util.ErrorStructure;
-
-public class AdminExceptionHandler {
+@RestControllerAdvice
+public class UserExceptionHandler {
 	private final AppResponseBuilder appResponseBuilder;
 
 	
   
-	public AdminExceptionHandler(AppResponseBuilder appResponseBuilder) {
+	public UserExceptionHandler(AppResponseBuilder appResponseBuilder) {
 		super();
 		this.appResponseBuilder = appResponseBuilder;
 	}
@@ -29,6 +31,7 @@ public class AdminExceptionHandler {
 	public static ResponseEntity<ErrorStructure<String>> handleNoUsersFound(NoAdminFoundException ex){
 		return AppResponseBuilder.error(HttpStatus.NOT_FOUND, ex.getMessage(),"User not found under requested criteria");
 	}
+
 
 
 }

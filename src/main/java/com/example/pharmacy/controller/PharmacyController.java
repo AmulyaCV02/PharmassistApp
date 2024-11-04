@@ -3,6 +3,7 @@ package com.example.pharmacy.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,5 +33,12 @@ public class PharmacyController {
 		PharmacyResponse response=pharmacyService.addPharmacy(pharmacyRequest, adminId );
 		return appResponseBuilder.success(HttpStatus.CREATED,"Admin Created", response);
 	}
+     
+     @GetMapping("/admins/{adminId}/pharmacies")
+ 	public ResponseEntity<ResponseStructure<PharmacyResponse>> findPharmacyByAdminId(@PathVariable String adminId)
+ 	{
+ 		PharmacyResponse response=pharmacyService.findPharmacyByAdminId(adminId);
+ 		return appResponseBuilder.success(HttpStatus.FOUND,"Pharmacy associated with admin found",response );
+ 	}
 
 }
