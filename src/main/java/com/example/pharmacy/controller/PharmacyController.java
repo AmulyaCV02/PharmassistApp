@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.pharmacy.requestdtos.PharmacyRequest;
@@ -39,6 +40,13 @@ public class PharmacyController {
  	{
  		PharmacyResponse response=pharmacyService.findPharmacyByAdminId(adminId);
  		return appResponseBuilder.success(HttpStatus.FOUND,"Pharmacy associated with admin found",response );
+ 	}
+
+     @PutMapping("/pharmacies/{pharmacyId}")
+ 	public ResponseEntity<ResponseStructure<PharmacyResponse>> updatePharmacy(@RequestBody PharmacyRequest pharmacyRequest,@PathVariable String pharmacyId)
+ 	{
+ 		PharmacyResponse response=pharmacyService.updatePharmacy(pharmacyRequest, pharmacyId);
+ 		return appResponseBuilder.success(HttpStatus.OK,"Pharmacy Updated", response);
  	}
 
 }

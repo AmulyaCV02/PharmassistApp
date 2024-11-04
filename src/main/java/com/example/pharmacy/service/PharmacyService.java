@@ -62,6 +62,16 @@ public PharmacyResponse findPharmacyByAdminId(String adminId){
 	return pharmacyMapper.mapToPharmacyResponse(pharmacy);
 
 }
+public PharmacyResponse updatePharmacy(PharmacyRequest pharmacyRequest,String pharmacyId)
+{
+	return pharmacyRepository.findById(pharmacyId)
+			.map(exPharmacy ->{
+				pharmacyMapper.mapToPharmacy(pharmacyRequest, exPharmacy);
+				return pharmacyRepository.save(exPharmacy);
+			})
+			.map(pharmacyMapper::mapToPharmacyResponse)
+			.orElseThrow(() -> new NoPharmacyFoundException("Failed to update Pharmacy"));
+}
 	
 	
 	
