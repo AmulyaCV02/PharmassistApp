@@ -2,10 +2,11 @@ package com.example.pharmacy.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pharmacy.requestdtos.PharmacyRequest;
 import com.example.pharmacy.responsedtos.PharmacyResponse;
@@ -14,7 +15,7 @@ import com.example.pharmacy.util.AppResponseBuilder;
 import com.example.pharmacy.util.ResponseStructure;
 
 import jakarta.validation.Valid;
-@Controller
+@RestController 
 public class PharmacyController {
 
 	private final PharmacyService pharmacyService;
@@ -30,7 +31,8 @@ public class PharmacyController {
 	public ResponseEntity<ResponseStructure<PharmacyResponse>> addPharmacy(@RequestBody @Valid PharmacyRequest pharmacyRequest,@PathVariable String adminId)
 	{
 		PharmacyResponse response=pharmacyService.addPharmacy(pharmacyRequest, adminId );
-		return appResponseBuilder.success(HttpStatus.CREATED,"Admin Created", response);
+	
+		return appResponseBuilder.success(HttpStatus.CREATED,"Pharmacy Created", response);
 	}
 
 }

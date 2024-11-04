@@ -36,13 +36,11 @@ public PharmacyResponse addPharmacy(PharmacyRequest pharmacyRequest,String admin
 			   pharmacy = pharmacyRepository.save(pharmacy);
 			   admin.setPharmacy(pharmacy);
 			   adminRepository.save(admin);
-			   
-
-		        return pharmacyMapper.mapToPharmacyResponse(pharmacy);
+			   return pharmacyMapper.mapToPharmacyResponse(pharmacy);
 				  
 			  })
 			  
 			  .orElseThrow(() -> new AdminNotFoundByIdException("Admin with ID \" + pharmacyRequest.getAdminId() + \" not found."));
-}
+   }
 	
 }

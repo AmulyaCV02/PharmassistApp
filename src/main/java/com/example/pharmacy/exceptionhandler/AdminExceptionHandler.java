@@ -3,12 +3,13 @@ package com.example.pharmacy.exceptionhandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.pharmacy.exception.AdminNotFoundByIdException;
 import com.example.pharmacy.exception.NoAdminFoundException;
 import com.example.pharmacy.util.AppResponseBuilder;
 import com.example.pharmacy.util.ErrorStructure;
-
+@RestControllerAdvice
 public class AdminExceptionHandler {
 	private final AppResponseBuilder appResponseBuilder;
 

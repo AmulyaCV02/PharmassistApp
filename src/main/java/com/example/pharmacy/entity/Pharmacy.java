@@ -49,6 +49,7 @@ public class Pharmacy {
 	public void setLicenseNo(String licenseNo) {
 		this.licenseNo = licenseNo;
 	}
+
 	
 
 }
