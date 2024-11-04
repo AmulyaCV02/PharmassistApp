@@ -11,8 +11,6 @@ import com.example.pharmacy.responsedtos.AdminResponse;
 import com.example.pharmacy.util.AppResponseBuilder;
 
 
-
-
 @Service
 public class AdminService {
 	private final AdminRepository adminRepository;
