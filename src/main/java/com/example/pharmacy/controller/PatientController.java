@@ -47,6 +47,12 @@ import jakarta.validation.Valid;
 		    return appResponseBuilder.success(HttpStatus.FOUND, "Patients associated with the pharmacy found", response);
 		}
 	
+		@PutMapping("/patients/{patientId}")
+	
+		public ResponseEntity<ResponseStructure<PatientResponse>> updatePatient(@RequestBody PatientRequest patientRequest,  @PathVariable String patientId) {
+		    PatientResponse response = patientService.updatePatient(patientRequest, patientId);
+		    return appResponseBuilder.success(HttpStatus.OK, "Patient Updated", response);
+		}
 
 	}
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.pharmacy.entity.Patient;
 import com.example.pharmacy.exception.NoPatientsFoundException;
 import com.example.pharmacy.exception.NoPharmacyFoundException;
+import com.example.pharmacy.exception.PatientNotFoundByIdException;
 import com.example.pharmacy.mapper.PatientMapper;
 import com.example.pharmacy.repository.PatientRepository;
 import com.example.pharmacy.repository.PharmacyRepository;
@@ -61,7 +62,18 @@ import jakarta.validation.Valid;
 		}
 	
 		
-	
+		public PatientResponse updatePatient(PatientRequest patientRequest, String patientId) {
+		    return patientRepository.findById(patientId)
+		        .map(exPatient -> {
+		            patientMapper.mapToPatient(patientRequest, exPatient);
+		            return patientRepository.save(exPatient);
+		        })
+		        .map(patientMapper::mapToPatientResponse)
+		        .orElseThrow(() -> new PatientNotFoundByIdException("Failed to find Patient by Id"));
+		}
+
+
+
 					
 		}
 
