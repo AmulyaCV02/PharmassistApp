@@ -39,7 +39,13 @@ import jakarta.validation.Valid;
 			return appResponseBuilder.success(HttpStatus.CREATED,"Patient Registered", response);
 		}
 		
+
+		@GetMapping("/pharmacies/{pharmacyId}/patients")
 	
+		public ResponseEntity<ResponseStructure<List<PatientResponse>>> findAllPatientsByPharmacyId(@PathVariable String pharmacyId) {
+		    List<PatientResponse> response = patientService.findAllPatientByPharmacyId(pharmacyId);
+		    return appResponseBuilder.success(HttpStatus.FOUND, "Patients associated with the pharmacy found", response);
+		}
 	
 
 	}
