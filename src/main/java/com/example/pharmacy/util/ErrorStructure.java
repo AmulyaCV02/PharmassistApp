@@ -39,4 +39,13 @@ public class ErrorStructure<T> {
 
 		return error;
 	}
+	public static<T> ErrorStructure create(int status, String message)
+	{
+		ErrorStructure error = new ErrorStructure();
+		error.setStatus(status);
+		error.setMessage(message);
+	
+
+		return error;
+	}
 }
